@@ -1,96 +1,140 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Bot, ShoppingBag, Sparkles, Zap, MessageCircle, TrendingUp } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight, Menu, X } from "lucide-react";
+import ShinyText from "@/components/ShinyText";
 
-const features = [
-  { icon: Bot, title: "AI-Powered", desc: "Smart recommendations using advanced AI" },
-  { icon: TrendingUp, title: "Price Tracking", desc: "Compare prices across brands instantly" },
-  { icon: Zap, title: "Instant Results", desc: "Get product suggestions in seconds" },
-  { icon: ShoppingBag, title: "Wide Catalog", desc: "Phones, laptops, headphones & more" },
+const navLinks = [
+  "Home",
+  "About Us",
+  "Courses",
+  "Instructors",
+  "Testimonials",
+  "Blog",
 ];
 
 export default function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      {/* Nav */}
-      <nav className="flex items-center justify-between px-6 py-4 border-b border-border/30">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-            <ShoppingBag className="w-4 h-4 text-primary" />
+    <div className="relative h-screen w-full overflow-hidden bg-black font-sans">
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/40" />
+
+      {/* Content */}
+      <div className="relative z-10 flex h-full flex-col">
+        {/* Nav */}
+        <nav className="mx-auto w-full max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white">
+                <div className="h-3 w-3 rounded-full bg-white" />
+              </div>
+              <span className="text-sm font-semibold text-white">
+                DesignPro
+              </span>
+            </div>
+
+            {/* Desktop nav */}
+            <div className="hidden items-center gap-1 rounded-full border border-gray-700 px-2 py-1.5 lg:flex">
+              {navLinks.map((link) => (
+                <a
+                  key={link}
+                  href="#"
+                  className="rounded-full px-3 py-1.5 text-sm text-white/80 transition-colors hover:text-white"
+                >
+                  {link}
+                </a>
+              ))}
+              <a
+                href="#"
+                className="ml-1 flex items-center gap-1 rounded-full px-3 py-1.5 text-sm text-white/80 transition-colors hover:text-white"
+              >
+                Contact us
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+
+            {/* Mobile toggle */}
+            <button
+              className="text-white lg:hidden"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
-          <span className="font-heading font-bold text-foreground">ShopAI</span>
+
+          {/* Mobile menu */}
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-4 flex flex-col gap-2 rounded-2xl border border-gray-700 bg-black/80 p-4 backdrop-blur-md lg:hidden"
+            >
+              {[...navLinks, "Contact us"].map((link) => (
+                <a
+                  key={link}
+                  href="#"
+                  className="rounded-lg px-3 py-2 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  {link}
+                </a>
+              ))}
+            </motion.div>
+          )}
+        </nav>
+
+        {/* Top description row */}
+        <div className="mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <p className="max-w-md text-sm text-white/80 md:text-base">
+              We deliver transformative programs that empower emerging product
+              designers with cutting-edge expertise and vision to thrive
+              globally.
+            </p>
+            <p className="text-sm text-white/80 md:text-base lg:text-right">
+              8000+ Talented Designers Launched !
+            </p>
+          </div>
         </div>
-        <Link
-          to="/chat"
-          className="text-sm font-heading font-medium px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-        >
-          Open Chat
-        </Link>
-      </nav>
 
-      {/* Hero */}
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-2xl space-y-6"
-        >
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="w-20 h-20 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center glow-primary"
-          >
-            <Sparkles className="w-10 h-10 text-primary" />
-          </motion.div>
-
-          <h1 className="font-heading text-4xl md:text-6xl font-bold leading-tight">
-            Your AI{" "}
-            <span className="gradient-text">Shopping</span>
-            <br />
-            Assistant
-          </h1>
-
-          <p className="text-muted-foreground text-lg max-w-lg mx-auto leading-relaxed">
-            Tell me what you need — budget, features, brand — and I'll find the perfect products for you in seconds.
+        {/* Hero center */}
+        <div className="flex flex-1 flex-col items-center justify-center px-4">
+          <p className="mb-4 text-xs uppercase tracking-tight text-white/80 sm:text-sm">
+            Seats for Next Program Opening Soon
           </p>
 
-          <Link
-            to="/chat"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-heading font-semibold text-lg glow-primary hover:opacity-90 transition-all"
+          <h1
+            className="text-center text-5xl font-medium leading-[0.85] tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
           >
-            <MessageCircle className="w-5 h-5" />
-            Start Shopping
-          </Link>
-        </motion.div>
+            <span className="text-white">Become</span>
+            <br />
+            <ShinyText text="Product Leader." speed={3} />
+          </h1>
 
-        {/* Features */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 max-w-3xl w-full"
-        >
-          {features.map((f, i) => (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + i * 0.1 }}
-              className="glass-card p-5 text-center space-y-3 hover:border-primary/30 transition-colors"
-            >
-              <f.icon className="w-6 h-6 text-primary mx-auto" />
-              <h3 className="font-heading font-semibold text-sm text-foreground">{f.title}</h3>
-              <p className="text-xs text-muted-foreground">{f.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </main>
-
-      {/* Footer */}
-      <footer className="text-center py-6 text-xs text-muted-foreground border-t border-border/30">
-        Built with AI • ShopAI 2026
-      </footer>
+          <a
+            href="/chat"
+            className="group mt-8 inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-900 md:px-8 md:py-4 md:text-base"
+          >
+            Apply for Next Enrollment
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
