@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Send, Sparkles } from "lucide-react";
 
 interface ChatInputProps {
@@ -36,23 +37,26 @@ export function ChatInput({ onSend, isLoading }: ChatInputProps) {
     <div className="space-y-3">
       {showSuggestions && (
         <div className="flex flex-wrap gap-2 justify-center">
-          {suggestions.map((s) => (
-            <button
+          {suggestions.map((s, i) => (
+            <motion.button
               key={s}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
               onClick={() => {
                 onSend(s);
                 setShowSuggestions(false);
               }}
-              className="text-xs px-3 py-2 glass-card hover:border-primary/40 text-muted-foreground hover:text-foreground transition-all flex items-center gap-1.5"
+              className="text-xs px-3 py-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-primary/40 text-white/60 hover:text-white transition-all flex items-center gap-1.5"
             >
-              <Sparkles className="w-3 h-3 text-secondary" />
+              <Sparkles className="w-3 h-3 text-primary" />
               {s}
-            </button>
+            </motion.button>
           ))}
         </div>
       )}
 
-      <div className="glass-card flex items-end gap-2 p-2">
+      <div className="flex items-end gap-2 p-2 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
         <textarea
           ref={textareaRef}
           value={input}
@@ -65,7 +69,7 @@ export function ChatInput({ onSend, isLoading }: ChatInputProps) {
           }}
           placeholder="Ask me anything about products..."
           rows={1}
-          className="flex-1 bg-transparent border-none outline-none resize-none text-sm text-foreground placeholder:text-muted-foreground px-2 py-2 font-body"
+          className="flex-1 bg-transparent border-none outline-none resize-none text-sm text-white placeholder:text-white/30 px-2 py-2"
         />
         <button
           onClick={handleSend}
