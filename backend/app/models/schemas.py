@@ -6,9 +6,12 @@ class Product(BaseModel):
     name: str
     category: str
     price: float
+    originalPrice: Optional[float] = None
     rating: float
+    reviewCount: int = 0
     brand: str
-    image_url: str
+    image: str
+    features: List[str] = []
     description: str
 
 class ChatRequest(BaseModel):

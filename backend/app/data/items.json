@@ -5,8 +5,10 @@
     "category": "laptop",
     "price": 85000,
     "rating": 4.8,
+    "reviewCount": 120,
     "brand": "Quantum",
-    "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=500&q=60",
+    "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=500&q=60",
+    "features": ["RTX 4060", "16GB RAM", "1TB SSD"],
     "description": "High performance gaming laptop with RTX 4060."
   },
   {
@@ -15,8 +17,10 @@
     "category": "laptop",
     "price": 60000,
     "rating": 4.5,
+    "reviewCount": 85,
     "brand": "Nova",
-    "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=60",
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=60",
+    "features": ["Ultra-light", "14-inch Display", "M-Series Processor"],
     "description": "Lightweight ultrabook for productivity."
   },
   {
@@ -25,8 +29,10 @@
     "category": "phone",
     "price": 19500,
     "rating": 4.6,
+    "reviewCount": 300,
     "brand": "Stellar",
-    "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=60",
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=60",
+    "features": ["5G Enabled", "AI Camera", "120Hz Screen"],
     "description": "Great camera, 5G capabilities, smooth display."
   },
   {
@@ -35,8 +41,10 @@
     "category": "phone",
     "price": 45000,
     "rating": 4.9,
+    "reviewCount": 450,
     "brand": "Apex",
-    "image_url": "https://images.unsplash.com/photo-1598327105666-5b89351cb31b?auto=format&fit=crop&w=500&q=60",
+    "image": "https://images.unsplash.com/photo-1598327105666-5b89351cb31b?auto=format&fit=crop&w=500&q=60",
+    "features": ["Pro-grade Camera", "Snapdragon Chip", "AMOLED"],
     "description": "Flagship smartphone with pro-grade camera."
   },
   {
@@ -45,8 +53,10 @@
     "category": "earbuds",
     "price": 5000,
     "rating": 4.3,
+    "reviewCount": 210,
     "brand": "Sonic",
-    "image_url": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=500&q=60",
+    "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=500&q=60",
+    "features": ["ANC", "30H Battery", "Bluetooth 5.3"],
     "description": "Active noise cancelling wireless earbuds."
   }
 ]

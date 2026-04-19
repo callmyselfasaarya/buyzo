@@ -1,7 +1,7 @@
 import json
 import os
 from typing import List
-import google.generativeai as genai
+import google.genai as genai
 from app.models.schemas import ExtractedIntent, AIChatResponse
 
 # Configure Gemini
