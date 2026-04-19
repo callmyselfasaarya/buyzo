@@ -65,60 +65,32 @@ export default function Chat() {
 
     try {
       const resp = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/shopping-assistant`,
+        "http://localhost:8000/api/chat",
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+            "Content-Type": "application/json"
           },
-          body: JSON.stringify({ messages: allMessages }),
+          body: JSON.stringify({ message: input, history: allMessages }),
         }
       );
 
-      if (!resp.ok || !resp.body) throw new Error("Stream failed");
+      if (!resp.ok) throw new Error("Request failed");
 
-      const reader = resp.body.getReader();
-      const decoder = new TextDecoder();
-      let buf = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buf += decoder.decode(value, { stream: true });
-
-        let nl: number;
-        while ((nl = buf.indexOf("\n")) !== -1) {
-          let line = buf.slice(0, nl);
-          buf = buf.slice(nl + 1);
-          if (line.endsWith("\r")) line = line.slice(0, -1);
-          if (!line.startsWith("data: ")) continue;
-          const json = line.slice(6).trim();
-          if (json === "[DONE]") break;
-          try {
-            const parsed = JSON.parse(json);
-            const content = parsed.choices?.[0]?.delta?.content;
-            if (content) {
-              assistantContent += content;
-              setMessages((prev) => {
-                const last = prev[prev.length - 1];
-                if (last?.id === assistantId) {
-                  return prev.map((m) => m.id === assistantId ? { ...m, content: assistantContent } : m);
-                }
-                return [...prev, { id: assistantId, role: "assistant", content: assistantContent }];
-              });
-            }
-          } catch {}
+      const data = await resp.json();
+      
+      assistantContent = data.reply;
+      
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: assistantId,
+          role: "assistant",
+          content: assistantContent,
+          products: data.products
         }
-      }
-
-      // After streaming, attach products
-      const products = extractProductsFromResponse(input, assistantContent);
-      if (products.length > 0) {
-        setMessages((prev) =>
-          prev.map((m) => m.id === assistantId ? { ...m, products } : m)
-        );
-      }
+      ]);
+      
     } catch (e) {
       console.error(e);
       setMessages((prev) => [
@@ -126,7 +98,7 @@ export default function Chat() {
         {
           id: assistantId,
           role: "assistant",
-          content: assistantContent || "Sorry, I encountered an error. Please try again!",
+          content: assistantContent || "Sorry, I encountered an error connecting to the backend. Please try again!",
         },
       ]);
     } finally {

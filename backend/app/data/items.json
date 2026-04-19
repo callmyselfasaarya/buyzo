@@ -1,0 +1,52 @@
+[
+  {
+    "id": "p1",
+    "name": "Quantum X Pro Gaming Laptop",
+    "category": "laptop",
+    "price": 85000,
+    "rating": 4.8,
+    "brand": "Quantum",
+    "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=500&q=60",
+    "description": "High performance gaming laptop with RTX 4060."
+  },
+  {
+    "id": "p2",
+    "name": "NovaBook Air 14",
+    "category": "laptop",
+    "price": 60000,
+    "rating": 4.5,
+    "brand": "Nova",
+    "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=500&q=60",
+    "description": "Lightweight ultrabook for productivity."
+  },
+  {
+    "id": "p3",
+    "name": "Stellar Vision 5G",
+    "category": "phone",
+    "price": 19500,
+    "rating": 4.6,
+    "brand": "Stellar",
+    "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=60",
+    "description": "Great camera, 5G capabilities, smooth display."
+  },
+  {
+    "id": "p4",
+    "name": "Apex Phone Ultra",
+    "category": "phone",
+    "price": 45000,
+    "rating": 4.9,
+    "brand": "Apex",
+    "image_url": "https://images.unsplash.com/photo-1598327105666-5b89351cb31b?auto=format&fit=crop&w=500&q=60",
+    "description": "Flagship smartphone with pro-grade camera."
+  },
+  {
+    "id": "p5",
+    "name": "SonicBuds Pro",
+    "category": "earbuds",
+    "price": 5000,
+    "rating": 4.3,
+    "brand": "Sonic",
+    "image_url": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=500&q=60",
+    "description": "Active noise cancelling wireless earbuds."
+  }
+]
