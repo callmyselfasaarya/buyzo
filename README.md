@@ -61,5 +61,3 @@ buyzo/
 2. Install dependencies: `npm install`
 3. Start the development server: `npm run dev`
 
----
-Built with AI • Buyzo 2026
