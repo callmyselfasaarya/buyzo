@@ -2,17 +2,27 @@ import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
 import { Bot, User } from "lucide-react";
 import { ProductCard } from "./ProductCard";
+import { ComparisonTable } from "./ComparisonTable";
+import { RecommendationBadge } from "./RecommendationBadge";
 import type { Product } from "@/data/products";
+import type { ComparisonData } from "./ComparisonTable";
 
 export interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
   products?: Product[];
+  comparison?: ComparisonData | null;
+  recommendationReason?: string | null;
+  bestProductId?: string | null;
 }
 
 export function ChatMessage({ message }: { message: Message }) {
   const isUser = message.role === "user";
+
+  const bestProduct = message.bestProductId
+    ? message.products?.find((p) => p.id === message.bestProductId)
+    : undefined;
 
   return (
     <motion.div
@@ -38,7 +48,7 @@ export function ChatMessage({ message }: { message: Message }) {
       </div>
 
       {/* Content */}
-      <div className={`flex-1 max-w-[80%] space-y-3 ${isUser ? "items-end flex flex-col" : ""}`}>
+      <div className={`flex-1 max-w-[85%] space-y-4 ${isUser ? "items-end flex flex-col" : ""}`}>
         {/* Message bubble */}
         <div
           className={`inline-block px-4 py-3 rounded-2xl text-sm leading-relaxed border transition-all ${
@@ -56,7 +66,37 @@ export function ChatMessage({ message }: { message: Message }) {
           )}
         </div>
 
-        {/* Product cards */}
+        {/* ── Comparison table ──────────────────────────────────────────────── */}
+        {!isUser && message.comparison && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.5 }}
+            className="w-full overflow-x-auto"
+          >
+            <ComparisonTable
+              comparison={message.comparison}
+              bestProductId={message.bestProductId}
+            />
+          </motion.div>
+        )}
+
+        {/* ── Recommendation badge ──────────────────────────────────────────── */}
+        {!isUser && message.recommendationReason && !message.comparison && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.45 }}
+            className="w-full"
+          >
+            <RecommendationBadge
+              reason={message.recommendationReason}
+              productName={bestProduct?.name}
+            />
+          </motion.div>
+        )}
+
+        {/* ── Product cards ─────────────────────────────────────────────────── */}
         {message.products && message.products.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -65,8 +105,28 @@ export function ChatMessage({ message }: { message: Message }) {
             className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
           >
             {message.products.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                index={i}
+                isBestPick={product.id === message.bestProductId}
+              />
             ))}
+          </motion.div>
+        )}
+
+        {/* ── Verdict below comparison (if applicable) ──────────────────────── */}
+        {!isUser && message.comparison && message.recommendationReason && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.4 }}
+            className="w-full"
+          >
+            <RecommendationBadge
+              reason={message.recommendationReason}
+              productName={bestProduct?.name}
+            />
           </motion.div>
         )}
       </div>

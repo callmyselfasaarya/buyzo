@@ -10,6 +10,11 @@ export interface Product {
   image: string;
   features: string[];
   description: string;
+  // Real-data extensions
+  buy_url?: string;         // direct Amazon link
+  price_drop?: number;      // ₹ dropped vs last week
+  price_drop_days?: number; // days since it was higher
+  source?: string;          // "amazon" | "local"
 }
 
 export const products: Product[] = [

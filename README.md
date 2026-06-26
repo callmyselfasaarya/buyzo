@@ -11,6 +11,11 @@ Buyzo is a modern e-commerce companion that uses AI to help users find the perfe
 - **Structured Filtering**: Logic-based product filtering on the backend ensuring accurate results for category and budget constraints.
 - **Glassmorphism Design**: Sleek, modern aesthetic with glassmorphism cards and vibrant gradients.
 - **Scalable Architecture**: A clean separation of concerns with a **FastAPI** backend and a **Vite**-powered frontend.
+- **Price Tracking & Drop Alerts**: Records price history and notifies users of price drops.
+- **Local Catalog Fallback**: Provides a local product database when external API fails.
+- **Product Comparison**: Allows side‑by‑side comparison of multiple products.
+- **Advanced Search & Filtering**: Supports brand, category, budget, and keyword based intent extraction.
+
 
 ## 🛠️ Tech Stack
 

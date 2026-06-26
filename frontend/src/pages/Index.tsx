@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Navbar } from "@/components/Navbar";
 import ParticleBackground from "@/components/ParticleBackground";
+import ScrollSequence from "@/components/ScrollSequence";
 
 const features = [
   {
@@ -330,6 +331,13 @@ export default function Index() {
           {/* Chat preview */}
           <ChatPreview />
         </motion.div>
+      </main>
+
+      {/* ===== 3D SCROLL ANIMATION ===== */}
+      <ScrollSequence />
+
+      {/* ===== FEATURES & CTA ===== */}
+      <main className="relative flex flex-col items-center pb-20 px-6" style={{ zIndex: 10 }}>
 
         {/* ===== FEATURES ===== */}
         <motion.div
