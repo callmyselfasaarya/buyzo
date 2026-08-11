@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Chat from "./pages/Chat.tsx";
+import Wishlist from "./pages/Wishlist.tsx";
+import PriceTracking from "./pages/PriceTracking.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -18,6 +20,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/alerts" element={<PriceTracking />} />
+          {/* Settings and Profile can be added later or as modals */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

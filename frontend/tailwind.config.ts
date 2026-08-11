@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 
 export default {
   darkMode: ["class"],
@@ -14,71 +16,63 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'Space Grotesk', 'system-ui', 'sans-serif'],
-        heading: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        heading: ['Inter', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
         },
-        // Extended brand palette
-        purple: {
-          DEFAULT: "#7C3AED",
-          light: "#a78bfa",
-          dark: "#5b21b6",
-        },
-        blue: {
-          DEFAULT: "#3B82F6",
-          light: "#93C5FD",
-          dark: "#1d4ed8",
+        success: {
+          DEFAULT: "var(--success)",
         },
         sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+          DEFAULT: "var(--sidebar-background)",
+          foreground: "var(--sidebar-foreground)",
+          primary: "var(--sidebar-primary)",
+          "primary-foreground": "var(--sidebar-primary-foreground)",
+          accent: "var(--sidebar-accent)",
+          "accent-foreground": "var(--sidebar-accent-foreground)",
+          border: "var(--sidebar-border)",
+          ring: "var(--sidebar-ring)",
         },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-brand": "linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%)",
-        "gradient-brand-soft": "linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%)",
-        "gradient-glass": "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+        "gradient-brand": "linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)",
+        "gradient-brand-soft": "linear-gradient(135deg, rgba(79, 70, 229, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%)",
+        "gradient-glass": "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -87,14 +81,15 @@ export default {
         "2xl": "1rem",
         "3xl": "1.5rem",
         "4xl": "2rem",
+        "5xl": "2.5rem",
       },
       boxShadow: {
-        "glow-sm": "0 0 15px rgba(124, 58, 237, 0.2)",
-        "glow-md": "0 0 30px rgba(124, 58, 237, 0.3), 0 0 60px rgba(124, 58, 237, 0.1)",
-        "glow-lg": "0 0 50px rgba(124, 58, 237, 0.4), 0 0 100px rgba(124, 58, 237, 0.15)",
+        "glow-sm": "0 0 15px rgba(79, 70, 229, 0.2)",
+        "glow-md": "0 0 30px rgba(79, 70, 229, 0.3), 0 0 60px rgba(79, 70, 229, 0.1)",
+        "glow-lg": "0 0 50px rgba(79, 70, 229, 0.4), 0 0 100px rgba(79, 70, 229, 0.15)",
         "glow-blue": "0 0 30px rgba(59, 130, 246, 0.3), 0 0 60px rgba(59, 130, 246, 0.1)",
         "card": "0 4px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)",
-        "card-hover": "0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(124, 58, 237, 0.15)",
+        "card-hover": "0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(79, 70, 229, 0.15)",
       },
       keyframes: {
         "accordion-down": {
@@ -157,5 +152,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [tailwindcssAnimate, typography],
 } satisfies Config;
