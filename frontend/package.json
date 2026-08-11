@@ -1,7 +1,19 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "buyzo",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Buyzo - AI-Powered Shopping Brain & E-Commerce Companion",
+  "keywords": [
+    "ai",
+    "shopping-assistant",
+    "gemini",
+    "ecommerce",
+    "fastapi",
+    "react",
+    "vite",
+    "tailwind"
+  ],
+  "author": "Buyzo Team",
   "type": "module",
   "scripts": {
     "dev": "vite",
